@@ -1,0 +1,61 @@
+genus
+
+read_lib /home/installs/FOUNDRY/digital/45nm/dig/lib/slow.lib
+
+set_db lef_library {/home/installs/FOUNDRY/digital/45nm/dig/lef/gsclib045_tech.lef /home/installs/FOUNDRY/digital/45nm/dig/lef/gsclib045_macro.lef}
+
+read_hdl ecg_compress.v
+
+elaborate
+
+create_clock -name clk -period 5 -waveform {0 10} [get_ports "clk"]
+set_clock_transition -rise 0.1 [get_clocks "clk"]
+set_clock_transition -fall 0.1 [get_clocks "clk"]
+set_clock_uncertainty 0.01 [get_ports "clk"]
+
+set_input_delay -max 0.2 [get_ports "b"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x1"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x2"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x3"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x4"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x5"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x6"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x7"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "x8"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "cin"] -clock [get_clocks "clk"]
+set_input_delay -max 0.2 [get_ports "b"] 
+set_input_delay -max 0.2 [get_ports "x1"]
+set_input_delay -max 0.2 [get_ports "x2"]
+set_input_delay -max 0.2 [get_ports "x3"]
+set_input_delay -max 0.2 [get_ports "x4"]
+set_input_delay -max 0.2 [get_ports "x5"]
+set_input_delay -max 0.2 [get_ports "x6"]
+set_input_delay -max 0.2 [get_ports "x7"]
+set_input_delay -max 0.2 [get_ports "x8"]
+set_input_delay -max 0.2 [get_ports "cin"]
+
+set_output_delay -max 0.2 [get_ports "a"]
+set_output_delay -max 0.2 [get_ports "k"]
+set_output_delay -max 0.2 [get_ports "ansr"]
+set_output_delay -max 0.2 [get_ports "ansg1"]
+set_output_delay -max 0.2 [get_ports "ansg2"]
+set_output_delay -max 0.2 [get_ports "ansg3"]
+set_output_delay -max 0.2 [get_ports "cout"]
+
+set_db syn_generic_effort medium
+set_db syn_map_effort medium
+set_db syn_opt_effort medium
+
+syn_generic 
+syn_map 
+syn_opt
+
+report_power >proj_power_report.rpt
+report_area >proj_area.rpt  
+report_gates >proj_gates.rpt 
+report_timing -unconstrained >proj_timing.rpt
+
+gui_show
+
+
+
