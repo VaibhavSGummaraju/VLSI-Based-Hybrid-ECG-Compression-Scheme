@@ -14,5 +14,6 @@ Output.txt is the input file considered  after sampling the data (x 10,000) and 
 Synthesis.txt is the procedure to obtain reports for the file withoutclk.v.
 
 
-this systhesis code is for the the file (withclk.v and withclktb.v) only 
+this systhesis code is for the the file (withclk.v and withclktb.v) only.
+
 for others it need to be altered
